@@ -1,4 +1,17 @@
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
 module.exports = {
+  developMiddleware: app => {
+    app.use(
+      '/.netlify/functions/',
+      createProxyMiddleware({
+        target: 'http://localhost:9000',
+        pathRewrite: {
+          '/.netlify/functions/': '',
+        },
+      })
+    );
+  },
   siteMetadata: {
     title: 'Gatsby + Netlify CMS Starter',
     description:
@@ -12,7 +25,7 @@ module.exports = {
       resolve: 'gatsby-source-filesystem',
       options: {
         path: `${__dirname}/static/img`,
-        name: 'uploads',
+        name: 'images',
       },
     },
     {
@@ -20,13 +33,6 @@ module.exports = {
       options: {
         path: `${__dirname}/src/pages`,
         name: 'pages',
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
-        path: `${__dirname}/src/img`,
-        name: 'images',
       },
     },
     'gatsby-plugin-sharp',
@@ -39,7 +45,7 @@ module.exports = {
             resolve: 'gatsby-remark-relative-images',
             options: {
               staticFolderName: 'static',
-              include: ['admin', 'img'],
+              include: ['img'],
             },
           },
           {

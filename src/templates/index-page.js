@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
 
@@ -112,6 +112,15 @@ IndexPageTemplate.propTypes = {
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
+
+  useEffect(() => {
+    const SayHello = async () => {
+      const response = await fetch('/.netlify/functions/hello');
+      const message = await response.json();
+      console.log(message);
+    };
+    SayHello();
+  }, []);
 
   return (
     <Layout>
