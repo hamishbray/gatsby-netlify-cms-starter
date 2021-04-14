@@ -5,6 +5,7 @@ import { Link, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import Features from '../components/Features';
 import BlogRoll from '../components/BlogRoll';
+import ContactUs from '../components/ContactUs';
 
 export const IndexPageTemplate = ({ image, title, heading, subheading, mainpitch, description, intro }) => (
   <div>
@@ -90,6 +91,17 @@ export const IndexPageTemplate = ({ image, title, heading, subheading, mainpitch
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div className="container pb-6">
+        <div className="columns is-centered">
+          <div className="column is-10 is-offset-1">
+            <div className="content">
+              <ContactUs />
             </div>
           </div>
         </div>
